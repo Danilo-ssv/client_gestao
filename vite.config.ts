@@ -12,12 +12,11 @@ export default defineConfig({
     //     rewrite: (path) => path.replace(/^\/api/, '')
     //   }
     // }
-    host: true,
     port: 5173,
-    allowedHosts: true,
+    host: true,
     watch: {
       usePolling: true,
-    }
+    },
   },
   plugins: [react(), tailwindcss()],
   resolve: {

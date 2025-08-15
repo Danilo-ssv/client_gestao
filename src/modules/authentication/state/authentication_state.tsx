@@ -37,8 +37,6 @@ const AuthenticationState = create<State>()((set) => ({
 
     set(_ => ({ loading: 'none' }) as State);
 
-    console.log(res);
-
     if (res != null) {
       if (res.type == 'NotAuthenticated') {
         router.navigate(ClientRoutes.login());
