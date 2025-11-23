@@ -17,8 +17,8 @@ export class ApiRoutes {
   globalInsertClientes = () => '/global_insert_clientes';
   globalInsertHfEscolas = () => '/global_insert_hf_escolas';
   globalInsertMarcasProdutos = () => '/global_insert_marcas_produtos';
-  // // HOME
-  // home = () => '/home';
+  // HOME
+  home = () => '/home';
   // CLIENTES
   clientesRead = (search: string, page: number, limit: number): string => `/clientes/read?search=${search}&page=${page}&limit=${limit}`;
   clientesInsert = (): string => '/clientes/insert';
