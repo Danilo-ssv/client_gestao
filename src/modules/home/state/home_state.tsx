@@ -26,7 +26,7 @@ interface State {
   // resetOnDispose: () => void,
 };
 
-const HomeState = create<State>()((set, get) => ({
+const HomeState = create<State>()((set) => ({
   // data: [],
   selectedItems: [],
   loading: 'none',

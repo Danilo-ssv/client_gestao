@@ -1,9 +1,9 @@
-import { LocalStorageProvider } from "@/shared/provider/local_storage_provider";
+// import { LocalStorageProvider } from "@/shared/provider/local_storage_provider";
 import { HomeState } from "../state/home_state";
 import { useEffect } from "react";
 
 export function HomePage() {
-  const localStorageProvider = new LocalStorageProvider();
+  // const localStorageProvider = new LocalStorageProvider();
   const state = HomeState();
 
   useEffect(() => {
