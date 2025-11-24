@@ -8,13 +8,6 @@ export default ({ mode }: { mode: string }) => {
 
   return defineConfig({
     server: {
-      // proxy: {
-      //   '/api': {
-      //     target: 'http://localhost:8181',
-      //     changeOrigin: true,
-      //     rewrite: (path) => path.replace(/^\/api/, '')
-      //   }
-      // }
       port: Number.parseInt(process.env.VITE_PORT!),
       host: true,
       watch: {
