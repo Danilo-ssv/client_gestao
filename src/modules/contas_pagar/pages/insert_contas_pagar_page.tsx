@@ -91,7 +91,7 @@ export function InsertContasPagarPage() {
 
   return (
     <div className="px-1 pt-1">
-      <h1 className="text-2xl font-bold">Inserir Conta à Pagar</h1>
+      <h1 className="text-2xl font-bold">Inserir Conta a Pagar</h1>
       <div className="h-2"></div>
       <form onSubmit={insert} action="">
         <div className="grid grid-cols-2 gap-x-2">

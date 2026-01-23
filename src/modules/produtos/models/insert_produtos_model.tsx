@@ -1,3 +1,5 @@
+import { ImageModel } from "@/shared/models/image_model";
+
 export interface InsertProdutosModel {
   id: string;
   codigoBarra: string;
@@ -13,4 +15,5 @@ export interface InsertProdutosModel {
   nomeCategoriasProdutos: string;
   alertaEstoqueMinimo: string;
   genero: "1" | "2";
+  image: ImageModel,
 }

@@ -26,7 +26,7 @@ export function InsertProdutosPage() {
 
   const state = ProdutosState();
 
-  let [blockSubmit, setBlockSubmit] = useState(false);
+  const [blockSubmit, setBlockSubmit] = useState(false);
   const [controller, setController] = useState<InsertProdutosModel>({
     id: '',
     codigoBarra: '',
@@ -42,6 +42,7 @@ export function InsertProdutosPage() {
     nomeCategoriasProdutos: 'Selecione uma Categoria de Produtos',
     alertaEstoqueMinimo: '',
     genero: '1',
+    image: { imageOrigin: 'none', urlName: null, localFile: null }
   });
 
   function onChange(event: React.ChangeEvent<HTMLInputElement> | React.ChangeEvent<HTMLSelectElement>) {
@@ -78,6 +79,7 @@ export function InsertProdutosPage() {
       nomeCategoriasProdutos: controller.nomeCategoriasProdutos,
       alertaEstoqueMinimo: controller.alertaEstoqueMinimo,
       genero: controller.genero,
+      image: controller.image,
     });
   }
 
@@ -86,6 +88,7 @@ export function InsertProdutosPage() {
       state.readById(queryProps.id).then((value) => {
         if (value != null) {
           setController(value);
+          console.log(value.image);
         }
       });
     }
@@ -222,6 +225,44 @@ export function InsertProdutosPage() {
               <option value="2">Feminino</option>,
             ]}
             onChange={onChange}
+          />
+        </div>
+        <div>
+          {
+            controller.image.imageOrigin != "none" && (
+              <img
+                src={controller.image.localFile?.path ?? controller.image.urlName!}
+                style={{ maxWidth: '300px', maxHeight: '300px', border: '1px solid gray' }}
+              />
+            )
+          }
+          <input
+            type="file"
+            accept="image/*"
+            onChange={({ target }) => {
+              const file = target.files![0];
+
+              if (!file || file.type.substring(0, 5) !== "image") {
+                setController({
+                  ...controller,
+                  image: { imageOrigin: "none", urlName: null, localFile: null },
+                });
+                return;
+              }
+
+              const reader = new FileReader();
+
+              reader.readAsDataURL(file);
+
+              reader.onloadend = () => {
+                if (typeof reader.result == 'string') {
+                  setController({
+                    ...controller,
+                    image: { imageOrigin: "local", urlName: null, localFile: { path: reader.result, file } },
+                  });
+                }
+              };
+            }}
           />
         </div>
         <div className="h-2"></div>

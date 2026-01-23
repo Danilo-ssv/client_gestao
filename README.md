@@ -87,7 +87,7 @@ export default tseslint.config({
 - [x] Trazer o Token para a memória e arrumar as permissões;
 - [ ] Estilizar melhor os links, menu lateral e logout;
 - [ ] Estilizar melhor tela de login;
-- [ ] criar variáveis no servidor para cores e nome de status (contas à pagar, contas à receber e contratos);
+- [ ] criar variáveis no servidor para cores e nome de status (Contas a Pagar, Contas a Receber e contratos);
 - [ ] Seleção múltipla de linhas, deixar melhor seletor de páginas, duplo clique para editar, colocar opções de limites,  (se der);
 
 - [ ] Criar Módulo de Vendas

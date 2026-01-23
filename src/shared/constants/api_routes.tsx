@@ -56,7 +56,7 @@ export class ApiRoutes {
   despesasInsert = () => '/despesas/insert';
   despesasDelete = () => '/despesas/delete';
   despesasReadById = (id: string) => `/despesas/read_by_id?id=${id}`;
-  // Contas à Pagar
+  // Contas a Pagar
   contasPagarRead = (search: string, page: number, limit: number, startDate: string, endDate: string, status: string) => `/contas_pagar/read?search=${search}&page=${page}&limit=${limit}&start_date=${startDate}&end_date=${endDate}&status=${status}`;
   contasPagarInsert = () => '/contas_pagar/insert';
   contasPagarDelete = () => '/contas_pagar/delete';
@@ -64,7 +64,7 @@ export class ApiRoutes {
   contasPagarWriteOff = () => '/contas_pagar/write_off';
   contasPagarParcelling = () => '/contas_pagar/parcelling';
   // contasPagarReadForWriteOffParcelling = () => '/contas_pagar/read_for_write_off_parcelling';
-  // Contas à Receber
+  // Contas a Receber
   contasReceberRead = (search: string, page: number, limit: number, startDate: string, endDate: string, status: string) => `/contas_receber/read?search=${search}&page=${page}&limit=${limit}&start_date=${startDate}&end_date=${endDate}&status=${status}`;
   contasReceberInsert = () => '/contas_receber/insert';
   contasReceberDelete = () => '/contas_receber/delete';

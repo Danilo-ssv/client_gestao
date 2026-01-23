@@ -52,8 +52,17 @@ export class ProdutosServices {
 
   async insert(modelo: InsertProdutosModel): Promise<ErrorModel | null> {
     try {
+      const formData = new FormData();
+      for (const key in modelo) {
+        if (key == "image") continue;
+        formData.append(key, (modelo as any)[key]);
+      }
+      if (modelo.image.imageOrigin == "local" && modelo.image.localFile != null) {
+        formData.append('file', modelo.image.localFile.file);
+      }
+
       await instance.post(this.apiRoutes.produtosInsert(),
-        { ...modelo },
+        formData,
         { headers: { Authorization: new LocalStorageProvider().getToken() } },
       );
 
@@ -110,6 +119,9 @@ export class ProdutosServices {
         nomeCategoriasProdutos: res.data.nomeCategoriasProdutos,
         alertaEstoqueMinimo: res.data.alertaEstoqueMinimo,
         genero: res.data.genero,
+        image: res.data.image == ""
+          ? { imageOrigin: "none", urlName: null, localFile: null }
+          : { imageOrigin: "network", urlName: res.data.image, localFile: null },
       };
 
       return { data, error: null };

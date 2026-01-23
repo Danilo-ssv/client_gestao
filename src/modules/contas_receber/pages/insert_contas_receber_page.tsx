@@ -87,7 +87,7 @@ export function InsertContasReceberPage() {
 
   return (
     <div className="px-1 pt-1">
-      <h1 className="text-2xl font-bold">Inserir Conta à Receber</h1>
+      <h1 className="text-2xl font-bold">Inserir Conta a Receber</h1>
       <div className="h-2"></div>
       <form onSubmit={insert} action="">
         <div className="grid grid-cols-2 gap-x-2">

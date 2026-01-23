@@ -34,7 +34,7 @@ export function ContasPagarPage() {
   return (
     <>
       <div className="px-8 mt-1">
-        <h1 className="text-2xl font-bold">Contas à Pagar</h1>
+        <h1 className="text-2xl font-bold">Contas a Pagar</h1>
         <div className="h-5"></div>
         <div className="flex justify-between">
           <div className="flex gap-1">
