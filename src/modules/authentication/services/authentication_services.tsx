@@ -1,7 +1,7 @@
 import { ApiRoutes } from "@/shared/constants/api_routes";
 import { errorReturn, ErrorModel } from "@/shared/functions/error_return";
 import { LoginModel } from "../models/login_model";
-import { instance } from "@/shared/provider/axios_provider";
+import { apiProvider } from "@/shared/provider/api_provider";
 import { AxiosError } from "axios";
 import { SessionUserModel } from "../models/session_user_model";
 import { LocalStorageProvider } from "@/shared/provider/local_storage_provider";
@@ -11,7 +11,7 @@ export class AuthenticationServices {
 
   async login(modelo: LoginModel): Promise<{ user: SessionUserModel | null, token: string | null, error: ErrorModel | null }> {
     try {
-      const res = await instance.post(this.apiRoutes.login(), {
+      const res = await apiProvider.post(this.apiRoutes.login(), {
         ...modelo,
       });
 
@@ -98,7 +98,7 @@ export class AuthenticationServices {
 
   async logout(): Promise<ErrorModel | null> {
     try {
-      await instance.post(this.apiRoutes.logout(),
+      await apiProvider.post(this.apiRoutes.logout(),
         {},
         { headers: { Authorization: new LocalStorageProvider().getToken() } },
       );

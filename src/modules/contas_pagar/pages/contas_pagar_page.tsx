@@ -183,7 +183,7 @@ export function ContasPagarPage() {
                         : <div>
                           <hr />
                           <DeleteModal
-                            onSave={async () => await state.delete([Number.parseInt(element?.id ?? '')])}
+                            onSave={async () => await state.delete([element?.id ?? ''])}
                           />
                         </div>
                     }

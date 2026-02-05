@@ -1,5 +1,5 @@
 import { ApiRoutes } from "@/shared/constants/api_routes";
-import { instance } from "@/shared/provider/axios_provider";
+import { apiProvider } from "@/shared/provider/api_provider";
 import { HfContratosModel } from "../models/hf_contratos_model";
 import { InsertHfContratosModel } from "../models/insert_hf_contratos_model";
 import { errorReturn, ErrorModel } from "@/shared/functions/error_return";
@@ -39,7 +39,7 @@ export class HfContratosServices {
     idHfEscolas: string
   ): Promise<readReturnModel> {
     try {
-      const res = await instance.get(
+      const res = await apiProvider.get(
         this.apiRoutes.hfContratosRead(search, searchCpf, searchCnpj, page, limit, startDate, endDate, status, idHfEscolas),
         { headers: { Authorization: new LocalStorageProvider().getToken() } },
       );
@@ -88,7 +88,7 @@ export class HfContratosServices {
 
   async insert(modelo: InsertHfContratosModel): Promise<ErrorModel | null> {
     try {
-      await instance.post(this.apiRoutes.hfContratosInsert(),
+      await apiProvider.post(this.apiRoutes.hfContratosInsert(),
         { ...modelo },
         { headers: { Authorization: new LocalStorageProvider().getToken() } },
       );
@@ -107,7 +107,7 @@ export class HfContratosServices {
 
   async delete(listaIds: number[]): Promise<ErrorModel | null> {
     try {
-      await instance.delete(this.apiRoutes.hfContratosDelete(), {
+      await apiProvider.delete(this.apiRoutes.hfContratosDelete(), {
         data: { listaIds: listaIds },
         headers: { Authorization: new LocalStorageProvider().getToken() },
       },
@@ -127,7 +127,7 @@ export class HfContratosServices {
 
   async readById(id: string): Promise<{ data: InsertHfContratosModel | null, error: ErrorModel | null }> {
     try {
-      const res = await instance.get(this.apiRoutes.hfContratosReadById(id),
+      const res = await apiProvider.get(this.apiRoutes.hfContratosReadById(id),
         { headers: { Authorization: new LocalStorageProvider().getToken() } },
       );
 
@@ -179,7 +179,7 @@ export class HfContratosServices {
 
   async writeOff(id: string, dataBaixa: string): Promise<writeOffReturnModel> {
     try {
-      const res = await instance.post(this.apiRoutes.hfContratosWriteOff(),
+      const res = await apiProvider.post(this.apiRoutes.hfContratosWriteOff(),
         { id, dataBaixa },
         { headers: { Authorization: new LocalStorageProvider().getToken() } },
       );

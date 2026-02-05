@@ -1,5 +1,5 @@
 import { ApiRoutes } from "@/shared/constants/api_routes";
-import { instance } from "@/shared/provider/axios_provider";
+import { apiProvider } from "@/shared/provider/api_provider";
 import { ClientesModel } from "../models/clientes_model";
 import { InsertClientesModel } from "../models/insert_clientes_model";
 import { errorReturn, ErrorModel } from "@/shared/functions/error_return";
@@ -18,7 +18,7 @@ export class ClientesServices {
 
   async read(search: string, page: number, limit: number): Promise<readReturnModel> {
     try {
-      const res = await instance.get(this.apiRoutes.clientesRead(search, page, limit),
+      const res = await apiProvider.get(this.apiRoutes.clientesRead(search, page, limit),
         { headers: { Authorization: new LocalStorageProvider().getToken() } },
       );
 
@@ -50,7 +50,7 @@ export class ClientesServices {
 
   async insert(modelo: InsertClientesModel): Promise<ErrorModel | null> {
     try {
-      await instance.post(this.apiRoutes.clientesInsert(),
+      await apiProvider.post(this.apiRoutes.clientesInsert(),
         { ...modelo },
         { headers: { Authorization: new LocalStorageProvider().getToken() } },
       );
@@ -67,10 +67,10 @@ export class ClientesServices {
     }
   }
 
-  async delete(listaIds: number[]): Promise<ErrorModel | null> {
+  async delete(listaIds: string[]): Promise<ErrorModel | null> {
     try {
-      await instance.delete(this.apiRoutes.clientesDelete(), {
-        data: { listaIds: listaIds },
+      await apiProvider.delete(this.apiRoutes.clientesDelete(), {
+        data: { listaIds },
         headers: { Authorization: new LocalStorageProvider().getToken() },
       },
       );
@@ -89,7 +89,7 @@ export class ClientesServices {
 
   async readById(id: string): Promise<{ data: InsertClientesModel | null, error: ErrorModel | null }> {
     try {
-      const res = await instance.get(this.apiRoutes.clientesReadById(id),
+      const res = await apiProvider.get(this.apiRoutes.clientesReadById(id),
         { headers: { Authorization: new LocalStorageProvider().getToken() } },
       );
 

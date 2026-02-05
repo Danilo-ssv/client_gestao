@@ -2,7 +2,7 @@ import axios, { AxiosError } from "axios";
 import { ApiRoutes } from "../constants/api_routes";
 import { errorReturn, ErrorModel } from "../functions/error_return";
 import { GlobalMunicipiosModel } from "../models/global_municipios_model";
-import { instance } from "./axios_provider";
+import { apiProvider } from "./api_provider";
 import { LocalStorageProvider } from "./local_storage_provider";
 import { GlobalFornecedoresModel } from "../models/global_fornecedores_model";
 import { GlobalCategoriasProdutosModel } from "../models/global_categorias_produtos_model";
@@ -23,7 +23,7 @@ export class GlobalServices {
       const bairro = resCep.data.bairro;
       const codigo = resCep.data.ibge;
 
-      const res = await instance.get(this.apiRoutes.globalReadMunicipiosByCep(codigo),
+      const res = await apiProvider.get(this.apiRoutes.globalReadMunicipiosByCep(codigo),
         { headers: { Authorization: new LocalStorageProvider().getToken() } },
       );
 
@@ -49,7 +49,7 @@ export class GlobalServices {
 
   async readMunicipios(search: string, uf: string): Promise<{ data: GlobalMunicipiosModel[] | null, error: ErrorModel | null }> {
     try {
-      const res = await instance.get(this.apiRoutes.globalReadMunicipios(search, uf),
+      const res = await apiProvider.get(this.apiRoutes.globalReadMunicipios(search, uf),
         { headers: { Authorization: new LocalStorageProvider().getToken() } },
       );
 
@@ -78,7 +78,7 @@ export class GlobalServices {
 
   async readFornecedores(search: string): Promise<{ data: GlobalFornecedoresModel[] | null, error: ErrorModel | null }> {
     try {
-      const res = await instance.get(this.apiRoutes.globalReadFornecedores(search),
+      const res = await apiProvider.get(this.apiRoutes.globalReadFornecedores(search),
         { headers: { Authorization: new LocalStorageProvider().getToken() } },
       );
 
@@ -105,7 +105,7 @@ export class GlobalServices {
 
   async readCategoriasProdutos(search: string): Promise<{ data: GlobalCategoriasProdutosModel[] | null, error: ErrorModel | null }> {
     try {
-      const res = await instance.get(this.apiRoutes.globalReadCategoriasProdutos(search),
+      const res = await apiProvider.get(this.apiRoutes.globalReadCategoriasProdutos(search),
         { headers: { Authorization: new LocalStorageProvider().getToken() } },
       );
 
@@ -132,7 +132,7 @@ export class GlobalServices {
 
   async readDespesas(search: string): Promise<{ data: GlobalDespesasModel[] | null, error: ErrorModel | null }> {
     try {
-      const res = await instance.get(this.apiRoutes.globalReadDespesas(search),
+      const res = await apiProvider.get(this.apiRoutes.globalReadDespesas(search),
         { headers: { Authorization: new LocalStorageProvider().getToken() } },
       );
 
@@ -159,7 +159,7 @@ export class GlobalServices {
 
   async readClientes(search: string): Promise<{ data: GlobalClientesModel[] | null, error: ErrorModel | null }> {
     try {
-      const res = await instance.get(this.apiRoutes.globalReadClientes(search),
+      const res = await apiProvider.get(this.apiRoutes.globalReadClientes(search),
         { headers: { Authorization: new LocalStorageProvider().getToken() } },
       );
 
@@ -186,7 +186,7 @@ export class GlobalServices {
 
   async readHfEscolas(search: string): Promise<{ data: GlobalHfEscolasModel[] | null, error: ErrorModel | null }> {
     try {
-      const res = await instance.get(this.apiRoutes.globalReadHfEscolas(search),
+      const res = await apiProvider.get(this.apiRoutes.globalReadHfEscolas(search),
         { headers: { Authorization: new LocalStorageProvider().getToken() } },
       );
 
@@ -213,7 +213,7 @@ export class GlobalServices {
 
   async readMarcasProdutos(search: string): Promise<{ data: GlobalMarcasProdutosModel[] | null, error: ErrorModel | null }> {
     try {
-      const res = await instance.get(this.apiRoutes.globalReadMarcasProdutos(search),
+      const res = await apiProvider.get(this.apiRoutes.globalReadMarcasProdutos(search),
         { headers: { Authorization: new LocalStorageProvider().getToken() } },
       );
 
@@ -240,7 +240,7 @@ export class GlobalServices {
 
   async insertFornecedores(nome: string): Promise<{ id: string | null, error: ErrorModel | null }> {
     try {
-      const res = await instance.post(this.apiRoutes.globalInsertFornecedores(),
+      const res = await apiProvider.post(this.apiRoutes.globalInsertFornecedores(),
         { nome },
         { headers: { Authorization: new LocalStorageProvider().getToken() } },
       );
@@ -261,7 +261,7 @@ export class GlobalServices {
 
   async insertCategoriasProdutos(nome: string): Promise<{ id: string | null, error: ErrorModel | null }> {
     try {
-      const res = await instance.post(this.apiRoutes.globalInsertCategoriasProdutos(),
+      const res = await apiProvider.post(this.apiRoutes.globalInsertCategoriasProdutos(),
         { nome },
         { headers: { Authorization: new LocalStorageProvider().getToken() } },
       );
@@ -282,7 +282,7 @@ export class GlobalServices {
 
   async insertDespesas(nome: string): Promise<{ id: string | null, error: ErrorModel | null }> {
     try {
-      const res = await instance.post(this.apiRoutes.globalInsertDespesas(),
+      const res = await apiProvider.post(this.apiRoutes.globalInsertDespesas(),
         { nome },
         { headers: { Authorization: new LocalStorageProvider().getToken() } },
       );
@@ -303,7 +303,7 @@ export class GlobalServices {
 
   async insertClientes(nome: string): Promise<{ id: string | null, error: ErrorModel | null }> {
     try {
-      const res = await instance.post(this.apiRoutes.globalInsertClientes(),
+      const res = await apiProvider.post(this.apiRoutes.globalInsertClientes(),
         { nome },
         { headers: { Authorization: new LocalStorageProvider().getToken() } },
       );
@@ -324,7 +324,7 @@ export class GlobalServices {
 
   async insertHfEscolas(nome: string): Promise<{ id: string | null, error: ErrorModel | null }> {
     try {
-      const res = await instance.post(this.apiRoutes.globalInsertHfEscolas(),
+      const res = await apiProvider.post(this.apiRoutes.globalInsertHfEscolas(),
         { nome },
         { headers: { Authorization: new LocalStorageProvider().getToken() } },
       );
@@ -345,7 +345,7 @@ export class GlobalServices {
 
   async insertMarcasProdutos(nome: string): Promise<{ id: string | null, error: ErrorModel | null }> {
     try {
-      const res = await instance.post(this.apiRoutes.globalInsertMarcasProdutos(),
+      const res = await apiProvider.post(this.apiRoutes.globalInsertMarcasProdutos(),
         { nome },
         { headers: { Authorization: new LocalStorageProvider().getToken() } },
       );

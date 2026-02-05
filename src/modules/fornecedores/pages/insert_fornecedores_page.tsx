@@ -81,6 +81,7 @@ export function InsertFornecedoresPage() {
             placeholder="Digite o Nome do Fornecedor"
             value={controller.nome}
             onChange={onChange}
+            maxLength={150}
           />
         </div>
         <div className="grid grid-cols-2 gap-x-2">
@@ -100,6 +101,7 @@ export function InsertFornecedoresPage() {
             placeholder="Digite o CPF/CNPJ"
             value={controller.doc}
             onChange={onChange}
+            mask={['999.999.999-99', '99.999.999/9999-99']}
           />
           <CustomInput
             id='celular'
@@ -107,6 +109,7 @@ export function InsertFornecedoresPage() {
             placeholder="Digite o Celular"
             value={controller.celular}
             onChange={onChange}
+            mask={['(99) 99999-9999']}
           />
           <CustomInput
             id='email'
@@ -114,6 +117,7 @@ export function InsertFornecedoresPage() {
             placeholder="Digite o E-mail"
             value={controller.email}
             onChange={onChange}
+            maxLength={150}
           />
         </div>
         <div className="h-2"></div>

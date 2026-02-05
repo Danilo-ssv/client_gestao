@@ -88,7 +88,6 @@ export function InsertProdutosPage() {
       state.readById(queryProps.id).then((value) => {
         if (value != null) {
           setController(value);
-          console.log(value.image);
         }
       });
     }
@@ -101,18 +100,20 @@ export function InsertProdutosPage() {
       <form onSubmit={insert} action="">
         <div className="grid grid-cols-2 gap-x-2">
           <CustomInput
-            id='codigoBarra'
-            title='Código de Barra:'
-            placeholder="Digite o Código de Barra"
-            value={controller.codigoBarra}
-            onChange={onChange}
-          />
-          <CustomInput
             id='codigo'
             title='Código:'
             placeholder="Digite o Código"
             value={controller.codigo}
             onChange={onChange}
+            maxLength={50}
+          />
+          <CustomInput
+            id='codigoBarra'
+            title='Código de Barra:'
+            placeholder="Digite o Código de Barra"
+            value={controller.codigoBarra}
+            onChange={onChange}
+            maxLength={150}
           />
         </div>
         <div>
@@ -122,48 +123,10 @@ export function InsertProdutosPage() {
             placeholder="Digite o Nome do Produto"
             value={controller.nome}
             onChange={onChange}
+            maxLength={150}
           />
         </div>
         <div className="grid grid-cols-2 gap-x-2">
-          <CustomInput
-            id='descricao'
-            title='Descrição:'
-            placeholder="Digite uma Descrição"
-            value={controller.descricao}
-            onChange={onChange}
-          />
-          <CustomInput
-            id='preco'
-            title='Preço:'
-            placeholder="Digite o Preço"
-            value={controller.preco}
-            onChange={({ target }) => {
-              setController({
-                ...controller,
-                preco: currencyFormat(target.value),
-              })
-            }}
-          />
-          <CustomInput
-            id='estoque'
-            title='Estoque:'
-            placeholder="Digite o Estoque"
-            value={controller.estoque}
-            onChange={onChange}
-            type="number"
-          />
-          <CustomInput
-            id='custo'
-            title='Custo:'
-            placeholder="Digite o Custo"
-            value={controller.custo}
-            onChange={({ target }) => {
-              setController({
-                ...controller,
-                custo: currencyFormat(target.value),
-              });
-            }}
-          />
           <div>
             <label htmlFor="idMarcasProdutos">Marcas de Produtos:</label>
             <CustomSearchSelect
@@ -209,12 +172,52 @@ export function InsertProdutosPage() {
             />
           </div>
           <CustomInput
+            id='preco'
+            title='Preço:'
+            placeholder="Digite o Preço"
+            value={controller.preco}
+            onChange={({ target }) => {
+              setController({
+                ...controller,
+                preco: currencyFormat(target.value),
+              })
+            }}
+          />
+          <CustomInput
+            id='custo'
+            title='Custo:'
+            placeholder="Digite o Custo"
+            value={controller.custo}
+            onChange={({ target }) => {
+              setController({
+                ...controller,
+                custo: currencyFormat(target.value),
+              });
+            }}
+          />
+          <CustomInput
+            id='estoque'
+            title='Estoque:'
+            placeholder="Digite o Estoque"
+            value={controller.estoque}
+            onChange={onChange}
+            type="number"
+          />
+          <CustomInput
             id='alertaEstoqueMinimo'
             title='Alerta Estoque Mínimo:'
             placeholder="Digite o Estoque Mínimo"
             value={controller.alertaEstoqueMinimo}
             onChange={onChange}
             type="number"
+          />
+          <CustomInput
+            id='descricao'
+            title='Descrição:'
+            placeholder="Digite uma Descrição"
+            value={controller.descricao}
+            onChange={onChange}
+            maxLength={150}
           />
           <CustomSelect
             id='genero'

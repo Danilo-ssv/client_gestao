@@ -121,7 +121,7 @@ export function DashboardContainer({ child }: { child: JSX.Element }) {
             }
             {
               localStorageProvider.getUser()?.permissoes.hfEscolasRead == true &&
-              CustomLink(9, <GraduationCap size={19} />, 'Escolas', ClientRoutes.dashboardHfEscolas())
+              CustomLink(9, <GraduationCap size={19} />, 'Colégios', ClientRoutes.dashboardHfEscolas())
             }
             {
               localStorageProvider.getUser()?.permissoes.hfContratosRead == true &&

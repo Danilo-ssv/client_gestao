@@ -67,12 +67,12 @@ export function InsertBaixaEstoqueModal(props: Props) {
   return <Dialog open={open} onOpenChange={setOpen}>
     <DialogTrigger asChild>
       <span onClick={() => setOpen(true)} className="m-1 py-1 px-2 rounded-[8px] hover:bg-gray-200 block cursor-pointer">
-        Dar baixa
+        Dar Baixa
       </span>
     </DialogTrigger>
     <DialogContent className="sm:max-w-[425px]">
       <DialogHeader>
-        <DialogTitle>Dar baixa</DialogTitle>
+        <DialogTitle>Baixa do Estoque</DialogTitle>
       </DialogHeader>
       <form onSubmit={insert}>
         <div className="grid grid-cols-2 gap-x-2">

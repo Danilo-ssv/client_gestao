@@ -1,7 +1,7 @@
 import { errorReturn, ErrorModel } from "@/shared/functions/error_return";
 import { ProdutosModel } from "../models/produtos_model";
 import { ApiRoutes } from "@/shared/constants/api_routes";
-import { instance } from "@/shared/provider/axios_provider";
+import { apiProvider } from "@/shared/provider/api_provider";
 import { LocalStorageProvider } from "@/shared/provider/local_storage_provider";
 import { AxiosError } from "axios";
 import { InsertProdutosModel } from "../models/insert_produtos_model";
@@ -19,7 +19,7 @@ export class ProdutosServices {
 
   async read(search: string, page: number, limit: number): Promise<readReturnModel> {
     try {
-      const res = await instance.get(this.apiRoutes.produtosRead(search, page, limit),
+      const res = await apiProvider.get(this.apiRoutes.produtosRead(search, page, limit),
         { headers: { Authorization: new LocalStorageProvider().getToken() } },
       );
 
@@ -61,7 +61,7 @@ export class ProdutosServices {
         formData.append('file', modelo.image.localFile.file);
       }
 
-      await instance.post(this.apiRoutes.produtosInsert(),
+      await apiProvider.post(this.apiRoutes.produtosInsert(),
         formData,
         { headers: { Authorization: new LocalStorageProvider().getToken() } },
       );
@@ -78,10 +78,10 @@ export class ProdutosServices {
     }
   }
 
-  async delete(listaIds: number[]): Promise<ErrorModel | null> {
+  async delete(listaIds: string[]): Promise<ErrorModel | null> {
     try {
-      await instance.delete(this.apiRoutes.produtosDelete(), {
-        data: { listaIds: listaIds },
+      await apiProvider.delete(this.apiRoutes.produtosDelete(), {
+        data: { listaIds },
         headers: { Authorization: new LocalStorageProvider().getToken() },
       },
       );
@@ -100,7 +100,7 @@ export class ProdutosServices {
 
   async readById(id: string): Promise<{ data: InsertProdutosModel | null, error: ErrorModel | null }> {
     try {
-      const res = await instance.get(this.apiRoutes.produtosReadById(id),
+      const res = await apiProvider.get(this.apiRoutes.produtosReadById(id),
         { headers: { Authorization: new LocalStorageProvider().getToken() } },
       );
 
@@ -138,7 +138,7 @@ export class ProdutosServices {
 
   async insertBaixaEstoque(idProdutos: string, estoque: number, dataBaixa: string): Promise<ErrorModel | null> {
     try {
-      await instance.post(this.apiRoutes.produtosInsertBaixaEstoque(),
+      await apiProvider.post(this.apiRoutes.produtosInsertBaixaEstoque(),
         { idProdutos, estoque, dataBaixa },
         { headers: { Authorization: new LocalStorageProvider().getToken() } },
       );

@@ -106,6 +106,7 @@ export function InsertClientesPage() {
             placeholder="Digite o Nome Completo"
             value={controller.nome}
             onChange={onChange}
+            maxLength={150}
           />
         </div>
         <div className="grid grid-cols-2 gap-x-2">
@@ -157,6 +158,7 @@ export function InsertClientesPage() {
             placeholder="Digite o CPF/CNPJ"
             value={controller.doc}
             onChange={onChange}
+            mask={['999.999.999-99', '99.999.999/9999-99']}
           />
           <CustomInput
             id='rg'
@@ -164,6 +166,7 @@ export function InsertClientesPage() {
             placeholder="Digite o RG"
             value={controller.rg}
             onChange={onChange}
+            maxLength={20}
           />
           <CustomInput
             id='celular'
@@ -171,6 +174,7 @@ export function InsertClientesPage() {
             placeholder="Digite o Celular"
             value={controller.celular}
             onChange={onChange}
+            mask={['(99) 99999-9999']}
           />
           <CustomInput
             id='email'
@@ -178,6 +182,7 @@ export function InsertClientesPage() {
             placeholder="Digite o E-mail"
             value={controller.email}
             onChange={onChange}
+            maxLength={150}
           />
         </div>
         <h1 className="text-1xl font-semibold">Detalhes de Endereço</h1>
@@ -188,6 +193,7 @@ export function InsertClientesPage() {
             placeholder="Digite o CEP"
             value={controller.cep}
             onChange={onChange}
+            mask={['99.999-999']}
           />
           <CustomInput
             id='endereco'
@@ -195,6 +201,7 @@ export function InsertClientesPage() {
             placeholder="Digite o Endereço"
             value={controller.endereco}
             onChange={onChange}
+            maxLength={150}
           />
           <CustomInput
             id='numero'
@@ -202,6 +209,7 @@ export function InsertClientesPage() {
             placeholder="Digite o Número"
             value={controller.numero}
             onChange={onChange}
+            maxLength={20}
           />
           <div>
             <label htmlFor="idMunicipios">Município:</label>
@@ -233,6 +241,7 @@ export function InsertClientesPage() {
           placeholder="Digite a Observação"
           value={controller.obs}
           onChange={onChange}
+          maxLength={200}
         />
         <div className="h-2"></div>
         <div className="relative inline-block">

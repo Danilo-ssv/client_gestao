@@ -1,6 +1,6 @@
 import { errorReturn, ErrorModel } from "@/shared/functions/error_return";
 import { ApiRoutes } from "@/shared/constants/api_routes";
-import { instance } from "@/shared/provider/axios_provider";
+import { apiProvider } from "@/shared/provider/api_provider";
 import { LocalStorageProvider } from "@/shared/provider/local_storage_provider";
 import { AxiosError } from "axios";
 
@@ -16,7 +16,7 @@ export class HomeServices {
 
   async read(): Promise<readReturnModel> {
     try {
-      await instance.get(this.apiRoutes.home(),
+      await apiProvider.get(this.apiRoutes.home(),
         { headers: { Authorization: new LocalStorageProvider().getToken() } },
       );
 
@@ -49,7 +49,7 @@ export class HomeServices {
 
   //   async insert(modelo: InsertHomeModel): Promise<ErrorModel | null> {
   //     try {
-  //       await instance.post(this.apiRoutes.HomeInsert(),
+  //       await apiProvider.post(this.apiRoutes.HomeInsert(),
   //         { ...modelo },
   //         { headers: { Authorization: new LocalStorageProvider().getToken() } },
   //       );
@@ -68,7 +68,7 @@ export class HomeServices {
 
   //   async delete(listaIds: number[]): Promise<ErrorModel | null> {
   //     try {
-  //       await instance.delete(this.apiRoutes.HomeDelete(), {
+  //       await apiProvider.delete(this.apiRoutes.HomeDelete(), {
   //         data: { listaIds: listaIds },
   //         headers: { Authorization: new LocalStorageProvider().getToken() },
   //       },
@@ -88,7 +88,7 @@ export class HomeServices {
 
   //   async readById(id: string): Promise<{ data: InsertHomeModel | null, error: ErrorModel | null }> {
   //     try {
-  //       const res = await instance.get(this.apiRoutes.HomeReadById(id),
+  //       const res = await apiProvider.get(this.apiRoutes.HomeReadById(id),
   //         { headers: { Authorization: new LocalStorageProvider().getToken() } },
   //       );
 
@@ -123,7 +123,7 @@ export class HomeServices {
 
   //   async insertBaixaEstoque(idHome: string, estoque: number, dataBaixa: string): Promise<ErrorModel | null> {
   //     try {
-  //       await instance.post(this.apiRoutes.HomeInsertBaixaEstoque(),
+  //       await apiProvider.post(this.apiRoutes.HomeInsertBaixaEstoque(),
   //         { idHome, estoque, dataBaixa },
   //         { headers: { Authorization: new LocalStorageProvider().getToken() } },
   //       );

@@ -141,6 +141,7 @@ export function InsertContasReceberPage() {
             placeholder="Digite uma Descrição"
             value={controller.descricao}
             onChange={onChange}
+            maxLength={150}
           />
           {/* </div>
         <div className="grid grid-cols-2 gap-x-2"> */}

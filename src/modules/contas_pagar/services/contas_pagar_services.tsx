@@ -1,5 +1,5 @@
 import { ApiRoutes } from "@/shared/constants/api_routes";
-import { instance } from "@/shared/provider/axios_provider";
+import { apiProvider } from "@/shared/provider/api_provider";
 import { errorReturn, ErrorModel } from "@/shared/functions/error_return";
 import { AxiosError } from "axios";
 import { LocalStorageProvider } from "@/shared/provider/local_storage_provider";
@@ -20,7 +20,7 @@ export class ContasPagarServices {
 
   async read(search: string, page: number, limit: number, startDate: string, endDate: string, status: string): Promise<readReturnModel> {
     try {
-      const res = await instance.get(this.apiRoutes.contasPagarRead(search, page, limit, startDate, endDate, status),
+      const res = await apiProvider.get(this.apiRoutes.contasPagarRead(search, page, limit, startDate, endDate, status),
         { headers: { Authorization: new LocalStorageProvider().getToken() } },
       );
 
@@ -55,7 +55,7 @@ export class ContasPagarServices {
 
   async insert(modelo: InsertContasPagarModel): Promise<ErrorModel | null> {
     try {
-      await instance.post(this.apiRoutes.contasPagarInsert(),
+      await apiProvider.post(this.apiRoutes.contasPagarInsert(),
         { ...modelo },
         { headers: { Authorization: new LocalStorageProvider().getToken() } },
       );
@@ -70,9 +70,9 @@ export class ContasPagarServices {
     }
   }
 
-  async delete(listaIds: number[]): Promise<ErrorModel | null> {
+  async delete(listaIds: string[]): Promise<ErrorModel | null> {
     try {
-      await instance.delete(this.apiRoutes.contasPagarDelete(), {
+      await apiProvider.delete(this.apiRoutes.contasPagarDelete(), {
         data: { listaIds },
         headers: { Authorization: new LocalStorageProvider().getToken() },
       },
@@ -90,7 +90,7 @@ export class ContasPagarServices {
 
   async readById(id: string): Promise<{ data: InsertContasPagarModel | null, error: ErrorModel | null }> {
     try {
-      const res = await instance.get(this.apiRoutes.contasPagarReadById(id),
+      const res = await apiProvider.get(this.apiRoutes.contasPagarReadById(id),
         { headers: { Authorization: new LocalStorageProvider().getToken() } },
       );
 
@@ -118,7 +118,7 @@ export class ContasPagarServices {
 
   async writeOff(id: string, dataBaixa: string, desconto: string): Promise<ErrorModel | null> {
     try {
-      await instance.post(this.apiRoutes.contasPagarWriteOff(),
+      await apiProvider.post(this.apiRoutes.contasPagarWriteOff(),
         { id, dataBaixa, desconto },
         { headers: { Authorization: new LocalStorageProvider().getToken() } },
       );
@@ -135,7 +135,7 @@ export class ContasPagarServices {
 
   async parcelling(id: string, parcelas: number, frequencia: number): Promise<ErrorModel | null> {
     try {
-      await instance.post(this.apiRoutes.contasPagarParcelling(),
+      await apiProvider.post(this.apiRoutes.contasPagarParcelling(),
         { id, parcelas, frequencia },
         { headers: { Authorization: new LocalStorageProvider().getToken() } },
       );

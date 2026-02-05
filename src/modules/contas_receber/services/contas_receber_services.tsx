@@ -1,5 +1,5 @@
 import { ApiRoutes } from "@/shared/constants/api_routes";
-import { instance } from "@/shared/provider/axios_provider";
+import { apiProvider } from "@/shared/provider/api_provider";
 import { errorReturn, ErrorModel } from "@/shared/functions/error_return";
 import { AxiosError } from "axios";
 import { LocalStorageProvider } from "@/shared/provider/local_storage_provider";
@@ -20,7 +20,7 @@ export class ContasReceberServices {
 
   async read(search: string, page: number, limit: number, startDate: string, endDate: string, status: string): Promise<readReturnModel> {
     try {
-      const res = await instance.get(this.apiRoutes.contasReceberRead(search, page, limit, startDate, endDate, status),
+      const res = await apiProvider.get(this.apiRoutes.contasReceberRead(search, page, limit, startDate, endDate, status),
         { headers: { Authorization: new LocalStorageProvider().getToken() } },
       );
 
@@ -54,7 +54,7 @@ export class ContasReceberServices {
 
   async insert(modelo: InsertContasReceberModel): Promise<ErrorModel | null> {
     try {
-      await instance.post(this.apiRoutes.contasReceberInsert(),
+      await apiProvider.post(this.apiRoutes.contasReceberInsert(),
         { ...modelo },
         { headers: { Authorization: new LocalStorageProvider().getToken() } },
       );
@@ -69,9 +69,9 @@ export class ContasReceberServices {
     }
   }
 
-  async delete(listaIds: number[]): Promise<ErrorModel | null> {
+  async delete(listaIds: string[]): Promise<ErrorModel | null> {
     try {
-      await instance.delete(this.apiRoutes.contasReceberDelete(), {
+      await apiProvider.delete(this.apiRoutes.contasReceberDelete(), {
         data: { listaIds },
         headers: { Authorization: new LocalStorageProvider().getToken() },
       },
@@ -89,7 +89,7 @@ export class ContasReceberServices {
 
   async readById(id: string): Promise<{ data: InsertContasReceberModel | null, error: ErrorModel | null }> {
     try {
-      const res = await instance.get(this.apiRoutes.contasReceberReadById(id),
+      const res = await apiProvider.get(this.apiRoutes.contasReceberReadById(id),
         { headers: { Authorization: new LocalStorageProvider().getToken() } },
       );
 
@@ -115,7 +115,7 @@ export class ContasReceberServices {
 
   async writeOff(id: string, dataBaixa: string, desconto: string): Promise<ErrorModel | null> {
     try {
-      await instance.post(this.apiRoutes.contasReceberWriteOff(),
+      await apiProvider.post(this.apiRoutes.contasReceberWriteOff(),
         { id, dataBaixa, desconto },
         { headers: { Authorization: new LocalStorageProvider().getToken() } },
       );
@@ -132,7 +132,7 @@ export class ContasReceberServices {
 
   async parcelling(id: string, parcelas: number, frequencia: number): Promise<ErrorModel | null> {
     try {
-      await instance.post(this.apiRoutes.contasReceberParcelling(),
+      await apiProvider.post(this.apiRoutes.contasReceberParcelling(),
         { id, parcelas, frequencia },
         { headers: { Authorization: new LocalStorageProvider().getToken() } },
       );

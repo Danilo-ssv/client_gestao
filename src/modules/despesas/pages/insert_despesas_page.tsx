@@ -72,6 +72,7 @@ export function InsertDespesasPage() {
             placeholder="Digite o Nome"
             value={controller.nome}
             onChange={onChange}
+            maxLength={100}
           />
         </div>
         <div className="h-2"></div>

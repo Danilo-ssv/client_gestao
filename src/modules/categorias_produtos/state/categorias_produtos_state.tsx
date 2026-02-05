@@ -17,7 +17,7 @@ interface State {
   limit: number,
   read: () => void,
   insert: (modelo: InsertCategoriasProdutosModel) => void,
-  delete: (listaIds: number[]) => Promise<boolean>,
+  delete: (listaIds: string[]) => Promise<boolean>,
   readById: (id: string) => Promise<InsertCategoriasProdutosModel | null>,
   changeSearch: (value: string) => void,
   changePage: (page: number) => void,
@@ -79,7 +79,7 @@ const CategoriasProdutosState = create<State>()((set, get) => ({
     router.navigate(-1);
   },
 
-  delete: async function (listaIds: number[]) {
+  delete: async function (listaIds: string[]) {
     const res = await new CategoriasProdutosServices().delete(listaIds);
 
     if (res?.type == 'NotAuthenticated') {

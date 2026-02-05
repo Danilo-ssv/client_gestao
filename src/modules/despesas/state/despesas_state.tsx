@@ -17,7 +17,7 @@ interface State {
   limit: number,
   read: () => void,
   insert: (modelo: InsertDespesasModel) => void,
-  delete: (listaIds: number[]) => Promise<boolean>,
+  delete: (listaIds: string[]) => Promise<boolean>,
   readById: (id: string) => Promise<InsertDespesasModel | null>,
   changeSearch: (value: string) => void,
   changePage: (page: number) => void,
@@ -79,7 +79,7 @@ const DespesasState = create<State>()((set, get) => ({
     router.navigate(-1);
   },
 
-  delete: async function (listaIds: number[]) {
+  delete: async function (listaIds: string[]) {
     const res = await new DespesasServices().delete(listaIds);
 
     if (res?.type == 'NotAuthenticated') {

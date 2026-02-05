@@ -21,7 +21,7 @@ interface State {
   limit: number,
   read: () => void,
   insert: (modelo: InsertContasReceberModel) => void,
-  delete: (listaIds: number[]) => Promise<boolean>,
+  delete: (listaIds: string[]) => Promise<boolean>,
   readById: (id: string) => Promise<InsertContasReceberModel | null>,
   writeOff: (id: string, dataBaixa: string, desconto: string) => Promise<boolean>,
   parcelling: (id: string, parcelas: number, frequencia: number) => Promise<boolean>,
@@ -101,7 +101,7 @@ const ContasReceberState = create<State>()((set, get) => ({
     router.navigate(-1);
   },
 
-  delete: async function (listaIds: number[]) {
+  delete: async function (listaIds: string[]) {
     const res = await new ContasReceberServices().delete(listaIds);
 
     if (res?.type == 'NotAuthenticated') {
