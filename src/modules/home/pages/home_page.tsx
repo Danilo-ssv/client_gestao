@@ -10,7 +10,7 @@ export function HomePage() {
   const [headerWidth, setHeaderWidth] = useState(0);
 
   useEffect(() => {
-    // state.read();
+    state.read();
 
     const resizeObserver = new ResizeObserver(() => {
       setHeaderWidth((ref.current as any).getBoundingClientRect().width as number);
@@ -178,24 +178,26 @@ function Hexagon({ iconcolor, iconName }: { iconcolor: string, iconName: IconNam
 //   );
 // }
 
-interface VendasModel {
-  // type: 'painel' | 'app';
-  label: string,
-  valor: number,
-  formattedValor: string,
 
-}
+
+// interface VendasModel {
+//   // type: 'painel' | 'app';
+//   label: string,
+//   valor: number,
+//   formattedValor: string,
+
+// }
 
 function CustomBarChart() {
 
-  const vendas: VendasModel[] = [
-    { label: 'Julho', valor: 100, formattedValor: 'R$ 100,00' },
-    { label: 'Agosto', valor: 150, formattedValor: 'R$ 150,00' },
-    { label: 'Setembro', valor: 300, formattedValor: 'R$ 300,00' },
-    { label: 'Outubro', valor: 250, formattedValor: 'R$ 250,00' },
-    { label: 'Novembro', valor: 500, formattedValor: 'R$ 500,00' },
-    { label: 'Dezembro', valor: 700, formattedValor: 'R$ 700,00' },
-  ];
+  // const vendas: VendasModel[] = [
+  //   { label: 'Julho', valor: 100, formattedValor: 'R$ 100,00' },
+  //   { label: 'Agosto', valor: 150, formattedValor: 'R$ 150,00' },
+  //   { label: 'Setembro', valor: 300, formattedValor: 'R$ 300,00' },
+  //   { label: 'Outubro', valor: 250, formattedValor: 'R$ 250,00' },
+  //   { label: 'Novembro', valor: 500, formattedValor: 'R$ 500,00' },
+  //   { label: 'Dezembro', valor: 700, formattedValor: 'R$ 700,00' },
+  // ];
 
   const numberOfColumns = 6;
   const columns = ['Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'];

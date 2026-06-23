@@ -1,4 +1,4 @@
-import { Archive, CreditCard, DollarSign, GraduationCap, Handshake, House, LogOutIcon, Menu, MenuIcon, ScrollText, SwatchBook, Tags, User, Users } from "lucide-react";
+import { Archive, CreditCard, DollarSign, GraduationCap, Handshake, House, LogOutIcon, Menu, ScrollText, SwatchBook, Tags, User, Users } from "lucide-react";
 import { JSX, ReactNode, useState } from "react";
 import { NavLink } from "react-router-dom";
 import { ClientRoutes } from "../constants/client_routes";
